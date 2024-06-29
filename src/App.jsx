@@ -8,57 +8,56 @@ function App() {
   const [changeCount, setChangeCount] = useState(0);
 
   // Effect to update the document title when changecount changes
-useEffect(() => {
-  document.title = `Changes: ${changeCount}`;
-}, [changeCount]);
+  useEffect(() => {
+    document.title = `Changes: ${changeCount}`;
+  }, [changeCount]);
 
-// Function to increment counter + 1
-const increment = () => {
-  setCounter(prevCounter => prevCounter + 1);
-  setChangeCount(prevCount => prevCount + 1); // increment the change count
-};
+  // Function to increment counter + 1
+  const increment = () => {
+    setCounter((prevCounter) => prevCounter + 1);
+    setChangeCount((prevCount) => prevCount + 1); // increment the change count
+  };
 
-const decrement = () => {
-  setCounter(prevCounter => prevCounter - 1);
-  setChangeCount(prevCount => prevCount + 1);
-};
+  const decrement = () => {
+    setCounter((prevCounter) => prevCounter - 1);
+    setChangeCount((prevCount) => prevCount + 1);
+  };
 
-// Function to reset the counter
-const reset = () => {
-  setCounter(0);
-  setChangeCount(prevCount => prevCount + 1);
-}
+  // Function to reset the counter
+  const reset = () => {
+    setCounter(0);
+    setChangeCount((prevCount) => prevCount + 1);
+  };
 
-// Function to increment counter by custom value
-const incrementValue = (value) => {
-  setCounter(prevCounter => prevCounter + value);
-  setChangeCount(prevCount => prevCount + 1);
-}
+  // Function to increment counter by custom value
+  const incrementValue = (value) => {
+    setCounter((prevCounter) => prevCounter + value);
+    setChangeCount((prevCount) => prevCount + 1);
+  };
 
-// Handling form submission to get custom increment value
-const handleIncrementValue = (event) => {
-  event.preventDefault();
-  const value = parseInt(event.target.elements.customValue.value, 10);
-  if (!isNaN(value)){
-    incrementValue(value);
-  }
-  event.target.reset();
-};
+  // Handling form submission to get custom increment value
+  const handleIncrementValue = (event) => {
+    event.preventDefault();
+    const value = parseInt(event.target.elements.customValue.value, 10);
+    if (!isNaN(value)) {
+      incrementValue(value);
+    }
+    event.target.reset();
+  };
 
   return (
     <>
-      <h1>Vite + React</h1>
+      <h1>Counter Application</h1>
+      <p>Counter: {counter}</p>
       <div className="card">
-        <button onClick={() => setCounter((count) => count + 1)}>
-          count is {counter}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <button onClick={increment}>Increment</button>
+        <button onClick={decrement}>Decrement</button>
+        <button onClick={reset}>Reset</button>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <form onSubmit={handleIncrementValue}>
+        <input type="number" name="customValue" placeholder="Enter a custom value"/>
+        <button type="submit">Increment by Value</button>
+      </form>
     </>
   );
 }
