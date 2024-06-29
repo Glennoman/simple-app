@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import useDarkMode from "./useDarkMode"
 
 function App() {
   const [counter, setCounter] = useState(0);
   const [changeCount, setChangeCount] = useState(0);
+
+  // Use custom hook to get current theme and toggle function
+  const [theme, toggleTheme] = useDarkMode();
 
   // Effect to update the document title when changecount changes
   useEffect(() => {
@@ -48,6 +52,7 @@ function App() {
   return (
     <>
       <h1>Counter Application</h1>
+      <button onClick={toggleTheme}>Toggle {theme === "Light" ? "Dark" : "Light"} Mode</button>
       <p>Counter: {counter}</p>
       <div className="card">
         <button onClick={increment}>Increment</button>

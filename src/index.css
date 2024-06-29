@@ -11,6 +11,17 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --button-bg: #dddddd;
+  --button-text: #000000;
+}
+
+body.dark {
+  --bg-color: #333333;
+  --text-color: #ffffff;
+  --button-bg: #555555;
+  --button-text: #ffffff;
 }
 
 a {
@@ -28,6 +39,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 h1 {
